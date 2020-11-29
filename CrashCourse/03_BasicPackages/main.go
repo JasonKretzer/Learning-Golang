@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math"
 
+	// you import your local packages based on the relative path from the gopath
 	"github.com/jasonkretzer/Learning-Golang/CrashCourse/03_Packages/strutil"
 )
 
