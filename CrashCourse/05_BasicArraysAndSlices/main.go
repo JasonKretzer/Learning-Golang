@@ -41,4 +41,7 @@ func main() {
 	//note the range values are indexes and is left inclusive but not right inclusive
 	fmt.Println(fruits2[1:1])
 
+	//you can append to the end of slices as well
+	fruits2 = append(fruits2, "Watermelon")
+	fmt.Println(fruits2)
 }
