@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"os"
+	"strings"
 )
 
 type deck []string
@@ -62,4 +64,29 @@ func (d deck) pickRandomCard() (string, deck) {
 	d = d[:len(d)-1]
 
 	return card, d
+}
+
+func (d deck) toString() string {
+	return strings.Join(d, ",")
+}
+
+/*
+Note that the next 2 functions show how to cast or convert types
+[]byte(d.toString())  -- convert string to bytes
+string(file) -- convert bytes to string
+you could cast the strings.Split(string(file), ",")
+to a deck using deck(strings.Split(string(file), ","))
+but it is not necessary
+*/
+func (d deck) saveToFile(filename string) error {
+	return os.WriteFile(filename, []byte(d.toString()), 0666)
+}
+
+func (d deck) loadFromFile(filename string) deck {
+	file, err := os.ReadFile(filename)
+	if err != nil {
+		fmt.Println("Error reading file:", err)
+		return newDeck()
+	}
+	return strings.Split(string(file), ",")
 }
