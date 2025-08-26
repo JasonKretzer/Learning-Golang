@@ -28,4 +28,12 @@ func main() {
 	fmt.Println("Loading hand1 from file")
 	loadedHand1 := deck{}.loadFromFile("hand1.txt")
 	loadedHand1.print()
+
+	cards2 := newDeck()
+	fmt.Println("\n\n\nShuffling cards2")
+	fmt.Println("Before shuffle:")
+	fmt.Println(cards2.toString())
+	cards2.shuffle()
+	fmt.Println("After shuffle:")
+	fmt.Println(cards2.toString())
 }

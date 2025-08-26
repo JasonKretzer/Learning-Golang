@@ -5,6 +5,7 @@ import (
 	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 type deck []string
@@ -89,4 +90,21 @@ func (d deck) loadFromFile(filename string) deck {
 		return newDeck()
 	}
 	return strings.Split(string(file), ",")
+}
+
+// shuffle a given deck
+// in addition to a using a seed value,
+// running it twice to get a better randomization
+// of the cards
+// I don't know if it helps, but it is what I am doing
+func (d deck) shuffle() {
+	for j := 0; j < 2; j++ {
+		source := rand.NewSource(time.Now().UnixNano())
+		r := rand.New(source)
+
+		for i := range d {
+			newPosition := r.Intn(len(d) - 1)
+			d[i], d[newPosition] = d[newPosition], d[i]
+		}
+	}
 }
